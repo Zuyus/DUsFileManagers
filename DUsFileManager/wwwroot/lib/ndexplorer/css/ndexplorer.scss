@@ -1,0 +1,81 @@
+﻿
+/*$fm-height: 600px;*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.filemanager {
+    .btn-toggle{
+        padding: 8px;
+        height: 8px;
+        line-height: 8px;
+        font-family: monospace;
+        padding-bottom: 15px;
+    }
+    .btn-file {
+        border : 0px;
+    }
+
+    > div {
+        border: 1px solid red;
+    }
+    /*height: $fm-height;*/
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(25, 1fr);
+    gap: 2px; /*khoảng cách cho các cột,dòng*/
+
+    .fm-toolbox {
+        grid-column: 1 / 21;
+        grid-row: 1 / 3;
+    }
+
+    .fm-folder-tree {
+        grid-column: 1 / 6;
+        grid-row: 3 / 25;
+    }
+
+    .fm-main-panel {
+        grid-column: 6 / 21;
+        grid-row: 3 / 26;
+    }
+
+    .fm-additional-info {
+        grid-column: 1 / 21;
+        grid-row: 25 / 26;
+    }
+}
+
+$folder-level-step: 10px;
+
+@for $i from 1 through 20 {
+    .folder-level-#{$i} {
+        padding-left: $folder-level-step * ($i - 1);
+        margin: 10px;
+
+        @if $i > 1 {
+            display: none;
+        }
+    }
+}
+// ko phải level 1 và class show thì ko cho show
+// có class show thì show
+/*.folder-level-1:not(.show) ~ .folder-level-2 {
+    display: none !important;
+}
+
+.folder-level-1.show ~ .folder-level-2 {
+    display: block;
+}*/
+
+.show {
+    display: block;
+}
+
+.rotate {
+    transform: rotate(90deg);
+}
+

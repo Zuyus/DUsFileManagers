@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trang chủ</title>
+    <link rel="icon" href="~/folder-manager-32px.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link href="~/lib/ndexplorer/css/ndexplorer.css" rel="stylesheet" asp-append-version="true" />
+</head>
+<body>
+
+    <div class="container">
+
+        <div x-data="ndexplorer" class="filemanager">
+            @*Thanh công cụ*@
+            <div class="fm-toolbox">
+                Thanh công cụ
+            </div>
+
+            @* Cây thư mục*@
+            <div class="fm-folder-tree">
+                <ul>
+                    <template x-for="(f, idx) in _folderTree">
+                        <li :class="f.cssClass">
+                            <button class="btn-file" x-text="f.isOpen ? '📂' : '📁'" x-on:click="toggleFolder(idx)">+</button>
+                            <span x-text="f.folderName">Text 1</span>
+                            @*data-expand-char="+" data-collapse-char="-"  class="btn-toggle" cách hiện thị ....*@
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            @*Phần chính hiển thị file và các công cụ*@
+            <div class="fm-main-panel">
+            </div>
+
+            @*Thông tin bổ sung*@
+            <div class="fm-additional-info">
+                Thông tin bổ sung
+            </div>
+
+            @*thêm*@
+        </div>
+    </div>
+
+    <script defer src="~/lib/alpinejs/cdn.min.js"></script>
+    <script src="~/lib/ndexplorer/js/ndexplorer.js" asp-append-version="true"></script>
+
+</body>
+</html>
